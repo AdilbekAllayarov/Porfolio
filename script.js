@@ -71,10 +71,13 @@ function animateProgressBars() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 const progressBar = entry.target.querySelector('.progress-fill');
-                const progress = entry.target.querySelector('.progress-bar-custom').getAttribute('data-progress');
+                const progressContainer = entry.target.querySelector('.progress-bar-custom');
                 
-                if (progressBar && progress) {
-                    progressBar.style.width = progress + '%';
+                if (progressContainer && progressBar) {
+                    const progress = progressContainer.getAttribute('data-progress');
+                    if (progress) {
+                        progressBar.style.width = progress + '%';
+                    }
                 }
                 
                 observer.unobserve(entry.target);
@@ -89,8 +92,8 @@ function animateProgressBars() {
     });
 }
 
-// Initialize progress bar animation
-animateProgressBars();
+// Initialize progress bar animation when DOM is ready
+document.addEventListener('DOMContentLoaded', animateProgressBars);
 
 // ==========================================
 // Scroll to Top Button
@@ -113,100 +116,16 @@ scrollTopBtn.addEventListener('click', function() {
 });
 
 // ==========================================
-// Contact Form Handling with AJAX
+// Contact Form Handling (FormSubmit)
 // ==========================================
-const contactForm = document.getElementById('contactForm');
+// FormSubmit xizmati HTML formada action orqali sozlanadi
+// Form HTML'da: action="https://formsubmit.co/adilbekallayarov27@gmail.com"
+const contactForm = document.querySelector('.contact-form');
 const formMessage = document.getElementById('formMessage');
-const submitBtn = document.getElementById('submitBtn');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Get form values
-        const name = document.getElementById('name').value.trim();
-        const email = document.getElementById('email').value.trim();
-        const subject = document.getElementById('subject').value.trim();
-        const message = document.getElementById('message').value.trim();
-        
-        // Basic validation
-        if (!name || !email || !subject || !message) {
-            showMessage('Iltimos, barcha maydonlarni to\'ldiring.', 'error');
-            return;
-        }
-        
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-            showMessage('Iltimos, to\'g\'ri email manzilini kiriting.', 'error');
-            return;
-        }
-        
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Yuborilmoqda...';
-        
-        // Prepare form data
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('_subject', subject);
-        formData.append('message', message);
-        formData.append('_captcha', 'false');
-        
-        try {
-            // Send via AJAX
-            const response = await fetch('https://formsubmit.co/ajax/adilbekallayarov27@gmail.com', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    subject: subject,
-                    message: message,
-                    _captcha: 'false'
-                })
-            });
-            
-            const data = await response.json();
-            
-            if (response.ok) {
-                showMessage('✅ Xabaringiz muvaffaqiyatli yuborildi! Tez orada javob beraman.', 'success');
-                contactForm.reset();
-            } else {
-                showMessage('❌ Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.', 'error');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            showMessage('❌ Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring.', 'error');
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Send Message';
-        }
-    });
-}
-
-function showMessage(text, type) {
-    formMessage.innerHTML = `
-        <div class="alert alert-${type === 'success' ? 'success' : 'danger'} alert-dismissible fade show" role="alert">
-            ${text}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    `;
-    
-    // Auto hide after 5 seconds
-    setTimeout(() => {
-        const alert = formMessage.querySelector('.alert');
-        if (alert) {
-            alert.classList.remove('show');
-            setTimeout(() => {
-                formMessage.innerHTML = '';
-            }, 300);
-        }
-    }, 5000);
+    // FormSubmit standart form submit yo'li bilan ishlaydi
+    console.log('Contact form detected and ready for FormSubmit');
 }
 
 // ==========================================
