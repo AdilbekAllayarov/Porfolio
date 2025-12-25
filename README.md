@@ -1,55 +1,28 @@
-# Front-End Developer Portfolio
+Front-End Developer Portfolio
 
-Modern portfolio website built with HTML, CSS, Bootstrap, and JavaScript.
+This is a personal front-end portfolio website designed and developed by me using HTML, CSS, Bootstrap, and JavaScript.
+The project was created to showcase my front-end skills and understanding of responsive design and basic interactivity.
 
-## 🛠️ Technologies & Versions
+Technologies Used
+	•	HTML5
+	•	CSS3
+	•	JavaScript (ES6)
+	•	Bootstrap 5
+	•	Font Awesome
+	•	Google Fonts (Poppins)
 
-### Core Technologies
-- **HTML5** - Latest standard
-- **CSS3** - Latest standard with custom properties
-- **JavaScript** - ES6+ (ECMAScript 2015+)
+The project uses CDN links only and does not require any build tools.
 
-### Frameworks & Libraries
-- **Bootstrap** - v5.3.2
-  - Responsive grid system
-  - Pre-built components
-  - Utility classes
+Form Handling
 
-### CDN Resources
-- **Font Awesome** - v6.4.2
-  - Icon library for social links and UI elements
+The contact form is handled using FormSubmit, which allows form submissions to be sent to email without creating a backend.
 
-- **Google Fonts** - Poppins
-  - Font weights: 300, 400, 500, 600, 700
-
-### Form Integration
-- **FormSubmit.co** - Free form backend service
-  - No backend code required
-  - Email notifications
-
-## 📁 Project Structure
-
-```
+Project Structure
 portfolio/
-│
-├── index.html          # Main HTML file
-├── styles.css          # Custom CSS styles
-├── script.js           # JavaScript functionality
-└── README.md           # Documentation
-```
+├── index.html
+├── styles.css
+├── script.js
+└── README.md
+Browser Support
 
-## 🌐 Browser Compatibility
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-- Opera (latest)
-
-## 📦 No Build Tools Required
-
-This project uses vanilla HTML, CSS, and JavaScript with CDN links. No npm, webpack, or build process needed.
-
----
-
-**Last Updated:** December 2025
+The website works on all modern browsers such as Chrome, Firefox, Edge, and Safari.
